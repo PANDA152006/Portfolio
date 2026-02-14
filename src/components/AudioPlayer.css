@@ -1,0 +1,50 @@
+.custom-audio-player {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.audio-info {
+    margin-bottom: 0.8rem;
+}
+
+.audio-info h4 {
+    font-size: 1.2rem;
+    margin: 0 0 0.3rem 0;
+    color: var(--text-primary);
+}
+
+.audio-info .artist-name {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Override library styles to match portfolio theme */
+.rhap_container {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    box-shadow: none !important;
+}
+
+.rhap_progress-filled,
+.rhap_progress-indicator {
+    background-color: var(--accent-color) !important;
+}
+
+.rhap_time {
+    color: var(--text-secondary) !important;
+}
+
+.rhap_main-controls button {
+    color: var(--text-primary) !important;
+}
+
+.rhap_main-controls button:hover {
+    color: var(--accent-color) !important;
+}
+
+.rhap_progress-bar {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
