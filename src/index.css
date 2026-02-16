@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  font-family: 'Outfit', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
@@ -13,8 +13,8 @@
   /* Violet */
   --accent-glow: rgba(124, 58, 237, 0.5);
 
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -114,8 +114,8 @@ body {
   font-weight: 500;
   transition: color 0.3s ease, text-shadow 0.3s ease;
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -127,10 +127,10 @@ body {
 .logo a {
   font-family: var(--font-heading);
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-left: 0;
   color: var(--text-primary);
-  letter-spacing: 1px;
+  letter-spacing: -0.02em;
 }
 
 .content {
@@ -149,7 +149,9 @@ body {
 h1 {
   font-family: var(--font-heading);
   font-size: 4.5rem;
+  font-weight: 800;
   line-height: 1.1;
+  letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   background: -webkit-linear-gradient(45deg, #fff, #a1a1aa);
   background-clip: text;
@@ -160,6 +162,8 @@ h1 {
 h2 {
   font-family: var(--font-heading);
   font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
   color: var(--text-primary);
 }
@@ -167,6 +171,8 @@ h2 {
 h3 {
   font-family: var(--font-heading);
   font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--accent-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -175,7 +181,9 @@ h3 {
 p {
   color: var(--text-secondary);
   font-size: 1.1rem;
+  font-weight: 400;
   line-height: 1.7;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
 }
 
@@ -188,6 +196,8 @@ li {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
   font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .text-container {
