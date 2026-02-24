@@ -22,6 +22,7 @@ const Navbar = () => {
                 <Link to="/" onClick={closeMenu}>Home</Link>
                 <Link to="/about" onClick={closeMenu}>About</Link>
                 <Link to="/projects" onClick={closeMenu}>Projects</Link>
+                <Link to="/blog" onClick={closeMenu}>Blog</Link>
                 <Link to="/playground" onClick={closeMenu}>Playground</Link>
                 <Link to="/contact" onClick={closeMenu}>Contact</Link>
             </div>

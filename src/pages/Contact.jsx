@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Mail, Github, Linkedin, Instagram, Send, MapPin } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
         message: ''
     });
     const [hoveredSocial, setHoveredSocial] = useState(null);
@@ -19,12 +18,18 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // For now, just create a mailto link
-        const mailtoLink = `mailto:yashduttsharma8@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
-        window.location.href = mailtoLink;
+        // Create WhatsApp message with form data
+        const whatsappLink = `https://wa.me/919560341235?text=${encodeURIComponent(formData.message)}`;
+        window.open(whatsappLink, '_blank');
     };
 
     const socialLinks = [
+        {
+            name: 'WhatsApp',
+            icon: WhatsAppIcon,
+            url: 'https://wa.me/919560341235',
+            color: '#25D366'
+        },
         {
             name: 'Email',
             icon: Mail,
@@ -34,7 +39,7 @@ const Contact = () => {
         {
             name: 'GitHub',
             icon: Github,
-            url: 'https://github.com/PANDA152006', // Replace with your GitHub
+            url: 'https://github.com/PANDA152006',
             color: '#ffffff'
         },
         {
@@ -46,7 +51,7 @@ const Contact = () => {
         {
             name: 'Instagram',
             icon: Instagram,
-            url: 'https://www.instagram.com/the_camera._.guy', // Replace with your Instagram
+            url: 'https://www.instagram.com/the_camera._.guy',
             color: '#e4405f'
         }
     ];
@@ -90,7 +95,7 @@ const Contact = () => {
                         margin: '0 auto 4rem'
                     }}
                 >
-                    Have a project in mind or just want to chat? Drop me a message!
+                    Have a project in mind or just want to chat? Send me a message on WhatsApp!
                 </motion.p>
 
                 <div style={{
@@ -110,73 +115,14 @@ const Contact = () => {
                             border: '1px solid rgba(255,255,255,0.1)'
                         }}
                     >
-                        <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--accent-color)' }}>
-                            Send a Message
+                        <h3 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: 'var(--accent-color)' }}>
+                            Send a WhatsApp Message
                         </h3>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+                            Fill out the form below and we'll connect on WhatsApp
+                        </p>
 
-                        {/* Name Input */}
-                        <div style={{ marginBottom: '1.5rem' }}>
-                            <label style={{
-                                display: 'block',
-                                marginBottom: '0.5rem',
-                                fontSize: '0.95rem',
-                                color: 'var(--text-secondary)'
-                            }}>
-                                Your Name
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                style={{
-                                    width: '100%',
-                                    padding: '0.9rem',
-                                    background: 'rgba(255,255,255,0.05)',
-                                    border: '1px solid rgba(255,255,255,0.1)',
-                                    borderRadius: '8px',
-                                    color: 'white',
-                                    fontSize: '1rem',
-                                    outline: 'none',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                onFocus={(e) => e.target.style.borderColor = 'var(--accent-color)'}
-                                onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
-                            />
-                        </div>
 
-                        {/* Email Input */}
-                        <div style={{ marginBottom: '1.5rem' }}>
-                            <label style={{
-                                display: 'block',
-                                marginBottom: '0.5rem',
-                                fontSize: '0.95rem',
-                                color: 'var(--text-secondary)'
-                            }}>
-                                Your Email
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                style={{
-                                    width: '100%',
-                                    padding: '0.9rem',
-                                    background: 'rgba(255,255,255,0.05)',
-                                    border: '1px solid rgba(255,255,255,0.1)',
-                                    borderRadius: '8px',
-                                    color: 'white',
-                                    fontSize: '1rem',
-                                    outline: 'none',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                onFocus={(e) => e.target.style.borderColor = 'var(--accent-color)'}
-                                onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
-                            />
-                        </div>
 
                         {/* Message Input */}
                         <div style={{ marginBottom: '1.5rem' }}>
@@ -220,7 +166,7 @@ const Contact = () => {
                             style={{
                                 width: '100%',
                                 padding: '1rem',
-                                background: 'var(--accent-color)',
+                                background: '#25D366',
                                 border: 'none',
                                 borderRadius: '8px',
                                 color: 'white',
@@ -234,8 +180,8 @@ const Contact = () => {
                                 transition: 'all 0.3s ease'
                             }}
                         >
-                            <Send size={20} />
-                            Send Message
+                            <WhatsAppIcon size={20} color="white" />
+                            Send via WhatsApp
                         </motion.button>
                     </motion.form>
 
@@ -258,12 +204,42 @@ const Contact = () => {
                                     width: '50px',
                                     height: '50px',
                                     borderRadius: '12px',
-                                    background: 'rgba(124, 58, 237, 0.2)',
+                                    background: 'rgba(37, 211, 102, 0.2)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}>
-                                    <Mail size={24} color="var(--accent-color)" />
+                                    <WhatsAppIcon size={24} color="#25D366" />
+                                </div>
+                                <div>
+                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '0 0 0.3rem 0' }}>WhatsApp</p>
+                                    <a
+                                        href="https://wa.me/919560341235"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            color: 'white',
+                                            textDecoration: 'none',
+                                            fontSize: '1.05rem',
+                                            fontWeight: '500'
+                                        }}
+                                    >
+                                        +91 9560341235
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                                <div style={{
+                                    width: '50px',
+                                    height: '50px',
+                                    borderRadius: '12px',
+                                    background: 'rgba(234, 67, 53, 0.2)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Mail size={24} color="#ea4335" />
                                 </div>
                                 <div>
                                     <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '0 0 0.3rem 0' }}>Email</p>

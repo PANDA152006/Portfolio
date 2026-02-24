@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 160" width="700" height="160">
+  <rect width="700" height="160" fill="transparent"/>
+  <!-- Cartier uses a custom serif script; we approximate with a high-fidelity italic serif -->
+  <text
+    x="50%"
+    y="118"
+    text-anchor="middle"
+    font-family="'Palatino Linotype', 'Book Antiqua', Palatino, 'Times New Roman', serif"
+    font-size="110"
+    font-style="italic"
+    font-weight="400"
+    fill="#1a1a1a"
+    letter-spacing="12"
+  >Cartier</text>
+</svg>

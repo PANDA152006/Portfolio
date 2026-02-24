@@ -5,8 +5,10 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
+import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Playground from './pages/Playground';
+import TypographyAssignment from './pages/TypographyAssignment';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -17,8 +19,10 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/playground" element={<Playground />} />
+        <Route path="/typography-assignment" element={<TypographyAssignment />} />
       </Routes>
     </AnimatePresence>
   );
