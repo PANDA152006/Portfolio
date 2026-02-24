@@ -171,7 +171,12 @@ const CATEGORIES = [
 
 export default function TypefaceGallery() {
     const [active, setActive] = useState('serif');
+    const [preview, setPreview] = useState('');
+    const [showPlayground, setShowPlayground] = useState(false);
     const cat = CATEGORIES.find(c => c.id === active);
+
+    // Text shown in specimen: live preview if set, else the default specimen
+    const specimenFor = (ex) => preview.trim() ? preview : ex.specimen;
 
     return (
         <div style={{ padding: '2rem 0' }}>
@@ -306,8 +311,9 @@ export default function TypefaceGallery() {
                                     fontSize: '1.8rem',
                                     color: 'rgba(255,255,255,0.9)',
                                     margin: 0, lineHeight: 1.2,
+                                    transition: 'font-family 0.2s',
                                 }}>
-                                    {ex.specimen}
+                                    {specimenFor(ex)}
                                 </p>
 
                                 {/* Name + year */}
@@ -329,6 +335,166 @@ export default function TypefaceGallery() {
                     </div>
                 </motion.div>
             </AnimatePresence>
+
+            {/* ══ FONT PLAYGROUND ══════════════════════════════════════ */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{ marginTop: '3rem' }}
+            >
+                {/* Toggle header */}
+                <button
+                    onClick={() => setShowPlayground(v => !v)}
+                    style={{
+                        display: 'flex', alignItems: 'center', gap: '0.7rem',
+                        width: '100%', background: 'none', border: 'none',
+                        cursor: 'pointer', padding: '0', marginBottom: '1.5rem',
+                    }}
+                >
+                    <div style={{
+                        flex: 1, height: '1px',
+                        background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.12))',
+                    }} />
+                    <span style={{
+                        padding: '0.5rem 1.4rem', borderRadius: '50px',
+                        border: `2px solid ${showPlayground ? '#a855f7' : 'rgba(255,255,255,0.15)'}`,
+                        background: showPlayground ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.03)',
+                        color: showPlayground ? '#a855f7' : 'rgba(255,255,255,0.5)',
+                        fontSize: '0.88rem', fontWeight: 700, letterSpacing: '0.04em',
+                        whiteSpace: 'nowrap', transition: 'all 0.25s',
+                        boxShadow: showPlayground ? '0 0 18px #a855f744' : 'none',
+                    }}>
+                        {showPlayground ? '✕ Close Playground' : '🎮 Font Playground — type anything'}
+                    </span>
+                    <div style={{
+                        flex: 1, height: '1px',
+                        background: 'linear-gradient(to left, transparent, rgba(255,255,255,0.12))',
+                    }} />
+                </button>
+
+                <AnimatePresence>
+                    {showPlayground && (
+                        <motion.div
+                            key="playground"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{ overflow: 'hidden' }}
+                        >
+                            {/* Input */}
+                            <div style={{
+                                position: 'relative', marginBottom: '2rem',
+                                background: 'rgba(255,255,255,0.03)',
+                                border: '1.5px solid rgba(168,85,247,0.4)',
+                                borderRadius: '16px', overflow: 'hidden',
+                                boxShadow: '0 0 30px rgba(168,85,247,0.12)',
+                            }}>
+                                <div style={{
+                                    padding: '0.6rem 1.2rem 0',
+                                    fontSize: '0.68rem', letterSpacing: '0.1em',
+                                    textTransform: 'uppercase', color: 'rgba(168,85,247,0.7)',
+                                    fontWeight: 700,
+                                }}>Type your text — preview updates live</div>
+                                <input
+                                    type="text"
+                                    value={preview}
+                                    onChange={e => setPreview(e.target.value)}
+                                    placeholder="e.g. Typography is art..."
+                                    autoFocus
+                                    style={{
+                                        width: '100%', padding: '0.9rem 1.2rem 1rem',
+                                        background: 'transparent', border: 'none', outline: 'none',
+                                        color: 'white', fontSize: '1.2rem',
+                                        fontFamily: '"Montserrat", Arial, sans-serif',
+                                        boxSizing: 'border-box',
+                                    }}
+                                />
+                                {preview && (
+                                    <button
+                                        onClick={() => setPreview('')}
+                                        style={{
+                                            position: 'absolute', right: '1rem', top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'rgba(255,255,255,0.1)', border: 'none',
+                                            borderRadius: '50%', width: '28px', height: '28px',
+                                            color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                                            fontSize: '0.9rem', lineHeight: 1,
+                                        }}
+                                    >✕</button>
+                                )}
+                            </div>
+
+                            {/* All fonts grid */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                {CATEGORIES.map(cat => (
+                                    <div key={cat.id}>
+                                        {/* Category label */}
+                                        <div style={{
+                                            display: 'flex', alignItems: 'center', gap: '0.75rem',
+                                            marginBottom: '1rem',
+                                        }}>
+                                            <div style={{
+                                                width: '10px', height: '10px', borderRadius: '50%',
+                                                background: cat.color,
+                                                boxShadow: `0 0 8px ${cat.color}`,
+                                            }} />
+                                            <span style={{
+                                                fontSize: '0.7rem', fontWeight: 700,
+                                                letterSpacing: '0.12em', textTransform: 'uppercase',
+                                                color: cat.color,
+                                            }}>{cat.name}</span>
+                                            <div style={{ flex: 1, height: '1px', background: `${cat.color}22` }} />
+                                        </div>
+
+                                        {/* Font rows */}
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                                            {cat.examples.map(ex => (
+                                                <motion.div
+                                                    key={ex.name}
+                                                    whileHover={{ x: 4 }}
+                                                    style={{
+                                                        display: 'grid',
+                                                        gridTemplateColumns: '160px 1fr',
+                                                        alignItems: 'center', gap: '1.5rem',
+                                                        background: 'rgba(255,255,255,0.02)',
+                                                        border: `1px solid ${cat.color}22`,
+                                                        borderRadius: '12px',
+                                                        padding: '1rem 1.5rem',
+                                                    }}
+                                                >
+                                                    {/* Font name */}
+                                                    <div>
+                                                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: cat.color }}>
+                                                            {ex.name}
+                                                        </div>
+                                                        <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', marginTop: '0.2rem' }}>
+                                                            {ex.year} · {cat.name}
+                                                        </div>
+                                                    </div>
+                                                    {/* Live specimen */}
+                                                    <div style={{
+                                                        fontFamily: ex.style,
+                                                        fontSize: '1.6rem',
+                                                        color: 'rgba(255,255,255,0.88)',
+                                                        lineHeight: 1.3,
+                                                        overflow: 'hidden',
+                                                        whiteSpace: 'nowrap',
+                                                        textOverflow: 'ellipsis',
+                                                    }}>
+                                                        {preview.trim() ? preview : ex.specimen}
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
         </div>
     );
 }
