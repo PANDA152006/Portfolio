@@ -9,6 +9,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Playground from './pages/Playground';
 import TypographyAssignment from './pages/TypographyAssignment';
+import ColorTheory from './pages/ColorTheory';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/playground" element={<Playground />} />
         <Route path="/typography-assignment" element={<TypographyAssignment />} />
+        <Route path="/color-theory" element={<ColorTheory />} />
       </Routes>
     </AnimatePresence>
   );
