@@ -6,8 +6,8 @@ const About = () => {
     const [activeSkill, setActiveSkill] = useState(null);
 
     const skills = [
-        { name: 'Web Development', icon: Code, color: '#7c3aed', description: 'React, Python' },
-        { name: 'Music Production', icon: Music, color: '#ec4899', description: 'FL Studio' },
+        { name: 'Web Development', icon: Code, color: '#E85D04', description: 'React, Python' },
+        { name: 'Music Production', icon: Music, color: '#2563EB', description: 'FL Studio' },
         { name: 'Filmmaking', icon: Film, color: '#f59e0b', description: 'Cinematography, Editing' },
         { name: 'VFX & Animation', icon: Camera, color: '#10b981', description: 'Motion Graphics, After Effects' }
     ];
@@ -131,9 +131,9 @@ const About = () => {
                                 whileHover={{ scale: 1.05 }}
                                 style={{
                                     padding: '1.5rem',
-                                    background: 'rgba(124, 58, 237, 0.1)',
+                                    background: 'rgba(232, 93, 4, 0.1)',
                                     borderRadius: '12px',
-                                    border: '1px solid rgba(124, 58, 237, 0.3)'
+                                    border: '1px solid rgba(232, 93, 4, 0.3)'
                                 }}
                             >
                                 <p style={{ fontSize: '1.1rem', fontWeight: '600' }}>{hobby}</p>

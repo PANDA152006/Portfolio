@@ -262,7 +262,7 @@ const Contact = () => {
                                     width: '50px',
                                     height: '50px',
                                     borderRadius: '12px',
-                                    background: 'rgba(124, 58, 237, 0.2)',
+                                    background: 'rgba(232, 93, 4, 0.2)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'

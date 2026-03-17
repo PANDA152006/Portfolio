@@ -36,7 +36,7 @@ const HeroScene = () => {
                 <mesh ref={meshRef} scale={2}>
                     <sphereGeometry args={[1, 64, 64]} />
                     <MeshDistortMaterial
-                        color="#200e4a"
+                        color="#120204"
                         envMapIntensity={1}
                         clearcoat={1}
                         clearcoatRoughness={0}
@@ -58,7 +58,7 @@ const HeroScene = () => {
                 size={2}
                 speed={0.4}
                 opacity={0.5}
-                color="#7c3aed"
+                color="#C6A15B"
             />
         </group>
     );

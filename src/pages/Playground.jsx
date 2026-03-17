@@ -21,9 +21,9 @@ const SHAPES = [
 ];
 
 const COLORS = [
-    { name: 'Violet', value: '#7c3aed' },
+    { name: 'Gold', value: '#C6A15B' },
     { name: 'Indigo', value: '#4f46e5' },
-    { name: 'Pink', value: '#ec4899' },
+    { name: 'Burgundy', value: '#8A1424' },
     { name: 'Cyan', value: '#06b6d4' },
     { name: 'Emerald', value: '#10b981' },
     { name: 'Amber', value: '#f59e0b' },
@@ -84,7 +84,7 @@ const Scene3D = ({ shape, color, wireframe, metalness, roughness, env, autoRotat
         <ambientLight intensity={0.4} />
         <directionalLight position={[10, 10, 5]} intensity={1.2} castShadow />
         <pointLight position={[-8, -8, -4]} intensity={0.6} color={color} />
-        <pointLight position={[8, -4, 4]} intensity={0.4} color="#7c3aed" />
+        <pointLight position={[8, -4, 4]} intensity={0.4} color="#C6A15B" />
 
         <Suspense fallback={null}>
             <InteractiveShape

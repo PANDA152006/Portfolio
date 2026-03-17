@@ -20,7 +20,7 @@ const Projects = () => {
             tech: ['Vanilla JS', 'Python', 'MongoDB'],
             link: 'https://bhook.food/',
             github: '#',
-            color: '#7c3aed'
+            color: '#C6A15B'
         },
         {
             id: 2,
@@ -32,7 +32,7 @@ const Projects = () => {
             description: 'Collection of cinematic videos showcasing storytelling and visual effects.',
             tech: ['Premiere Pro', 'After Effects', 'Color Grading'],
             link: '#',
-            color: '#ec4899'
+            color: '#8A1424'
         },
         {
             id: 3,
@@ -241,10 +241,10 @@ const Projects = () => {
                                     {project.tech.map(tech => (
                                         <span key={tech} style={{
                                             padding: '0.4rem 0.8rem',
-                                            background: 'rgba(124, 58, 237, 0.2)',
+                                            background: 'rgba(198, 161, 91, 0.2)',
                                             borderRadius: '6px',
                                             fontSize: '0.8rem',
-                                            color: '#a78bfa'
+                                            color: '#D4AF37'
                                         }}>
                                             {tech}
                                         </span>

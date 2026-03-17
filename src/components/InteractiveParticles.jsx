@@ -80,7 +80,7 @@ const InteractiveParticles = () => {
             </bufferGeometry>
             <pointsMaterial
                 size={0.05}
-                color="#7c3aed"
+                color="#E85D04"
                 transparent
                 opacity={0.6}
                 sizeAttenuation

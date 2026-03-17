@@ -16,7 +16,7 @@ const Blog = () => {
             thumbnail: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop&q=80',
             date: '2026-02-15',
             readTime: '5 min read',
-            color: '#7c3aed',
+            color: '#E85D04',
             content: `
                 <h3>Introduction</h3>
                 <p>Vite has transformed the way we build React applications. With its instant server start and lightning-fast HMR (Hot Module Replacement), development has never been smoother.</p>
@@ -45,7 +45,7 @@ const Blog = () => {
             thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop&q=80',
             date: '2026-02-10',
             readTime: '7 min read',
-            color: '#ec4899',
+            color: '#2563EB',
             content: `
                 <h3>The Power of Visual Storytelling</h3>
                 <p>Every frame tells a story. In filmmaking, we communicate not just through dialogue, but through composition, lighting, and movement.</p>
@@ -135,7 +135,7 @@ const Blog = () => {
             thumbnail: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop&q=80',
             date: '2026-01-28',
             readTime: '8 min read',
-            color: '#7c3aed',
+            color: '#E85D04',
             content: `
                 <h3>Why Three.js?</h3>
                 <p>Three.js brings the power of WebGL to the masses, making it possible to create stunning 3D graphics that run in the browser.</p>
@@ -167,7 +167,7 @@ const Blog = () => {
             thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop&q=80',
             date: '2026-01-20',
             readTime: '6 min read',
-            color: '#ec4899',
+            color: '#2563EB',
             content: `
                 <h3>The Psychology of Color</h3>
                 <p>Colors evoke emotions. Warm tones create intimacy and nostalgia, while cool tones suggest isolation or tension. Understanding this is key to effective color grading.</p>

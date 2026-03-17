@@ -6,12 +6,27 @@
   font-weight: 400;
 
   color-scheme: dark;
-  --bg-color: #0d0d0d;
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  --accent-color: #7c3aed;
-  /* Violet */
-  --accent-glow: rgba(124, 58, 237, 0.5);
+  --bg-color: #0B0B0B;
+  --bg-card: #6B0F1A;
+  --divider: rgba(198, 161, 91, 0.15);
+
+  /* Primary Accent: Gold */
+  --accent-color: #C6A15B;
+  --accent-primary: #C6A15B;
+  --accent-hover: #D4AF37;
+  --accent-active: #B8860B;
+  --accent-glow: rgba(198, 161, 91, 0.4);
+
+  /* Secondary Accent: Burgundy/Red */
+  --accent-secondary: #8A1424;
+  --accent-secondary-hover: #A1182B;
+  --accent-secondary-glow: rgba(138, 20, 36, 0.4);
+
+  /* Text Colors */
+  --text-primary: #F2F2F2;
+  --text-secondary: #B8B8B8;
+  --text-muted: #888888;
+
 
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -33,10 +48,28 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  /* Allow scrolling content */
   background-color: var(--bg-color);
   color: var(--text-primary);
 }
+
+/* 
+  Legacy Theme Wrapper for Specific Assignments
+  Prevents the global Orange/Blue theme from overriding the Violet/Pink aesthetic in assignments.
+*/
+.legacy-theme {
+  --bg-color: #0d0d0d;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --accent-color: #7c3aed;
+  /* Violet */
+  --accent-secondary: #f43f5e;
+  /* Rose / Pink */
+  --accent-glow: rgba(124, 58, 237, 0.5);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
 
 /* ... existing styles ... */
 
@@ -153,7 +186,7 @@ h1 {
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
-  background: -webkit-linear-gradient(45deg, #fff, #a1a1aa);
+  background: -webkit-linear-gradient(45deg, var(--text-primary), var(--text-secondary));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

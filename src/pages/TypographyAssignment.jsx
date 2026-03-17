@@ -34,7 +34,7 @@ const TypographyAssignment = () => {
     };
 
     return (
-        <div className="typography-assignment" ref={containerRef}>
+        <div className="typography-assignment legacy-theme" ref={containerRef}>
             {/* Progress Bar */}
             <motion.div
                 style={{
