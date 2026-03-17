@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, useMotionTemplate } from 'framer-motion';
-import { useRef, useEffect } from 'react';
+import { motion, useMotionValue, useTransform, useMotionTemplate, AnimatePresence } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 
 // Color palette tokens
 const P = {
@@ -30,81 +30,119 @@ const BLOBS = [
 
 /* ---------- Sub-cards ---------- */
 
-const PaletteCard = () => (
-    <motion.div
-        initial={{ opacity: 0, y: 40, x: -20 }}
-        animate={{ opacity: 1, y: 0, x: 0 }}
-        transition={{ delay: 0.55, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-            position: 'absolute',
-            left: '2%',
-            bottom: '8%',
-            width: 280,
-            background: 'rgba(107,15,26,0.75)',
-            border: '1px solid rgba(198,161,91,0.1)',
-            borderRadius: 20,
-            padding: '1.4rem',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
-            zIndex: 4,
-        }}
-    >
-        {/* header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.1rem' }}>
-            <span style={{ color: P.text, fontWeight: 700, fontSize: '1rem' }}>Color Palette</span>
-            <span style={{ color: P.neutral, fontSize: '1.1rem', cursor: 'default' }}>⋯</span>
-        </div>
-        {/* swatches */}
-        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.8rem' }}>
-            {PALETTE_SWATCHES.map((s, i) => (
-                <motion.div
-                    key={s.hex}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.75 + i * 0.08, type: 'spring', stiffness: 200 }}
-                    style={{
-                        flex: 1,
-                        aspectRatio: '0.75',
-                        borderRadius: 12,
-                        background: s.hex,
-                        border: s.hex === '#0B0B0B' ? '1px solid rgba(255,255,255,0.15)' : s.hex === '#F2F2F2' ? '1px solid rgba(0,0,0,0.1)' : 'none',
-                        boxShadow: s.hex !== '#0B0B0B' && s.hex !== '#F2F2F2' ? `0 6px 20px ${s.hex}55` : 'none',
-                    }}
-                />
-            ))}
-        </div>
-        {/* labels */}
-        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.2rem' }}>
-            {PALETTE_SWATCHES.map((s) => (
-                <div key={s.hex} style={{ flex: 1, textAlign: 'center' }}>
-                    <div style={{ color: P.text, fontSize: '0.52rem', fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {s.label}
+const PaletteCard = () => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40, x: -20, height: 'auto' }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ delay: 0.55, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+                position: 'absolute',
+                left: '2%',
+                bottom: '8%',
+                width: 280,
+                background: 'rgba(107,15,26,0.75)',
+                border: '1px solid rgba(198,161,91,0.1)',
+                borderRadius: 20,
+                padding: '1.4rem',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                zIndex: 4,
+                overflow: 'hidden'
+            }}
+        >
+            {/* header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.1rem' }}>
+                <span style={{ color: P.text, fontWeight: 700, fontSize: '1rem' }}>Color Palette</span>
+                <span style={{ color: P.neutral, fontSize: '1.1rem', cursor: 'default' }}>⋯</span>
+            </div>
+            {/* swatches */}
+            <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.8rem' }}>
+                {PALETTE_SWATCHES.map((s, i) => (
+                    <motion.div
+                        key={s.hex}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.75 + i * 0.08, type: 'spring', stiffness: 200 }}
+                        style={{
+                            flex: 1,
+                            aspectRatio: '0.75',
+                            borderRadius: 12,
+                            background: s.hex,
+                            border: s.hex === '#0B0B0B' ? '1px solid rgba(255,255,255,0.15)' : s.hex === '#F2F2F2' ? '1px solid rgba(0,0,0,0.1)' : 'none',
+                            boxShadow: s.hex !== '#0B0B0B' && s.hex !== '#F2F2F2' ? `0 6px 20px ${s.hex}55` : 'none',
+                        }}
+                    />
+                ))}
+            </div>
+            {/* labels */}
+            <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.2rem' }}>
+                {PALETTE_SWATCHES.map((s) => (
+                    <div key={s.hex} style={{ flex: 1, textAlign: 'center' }}>
+                        <div style={{ color: P.text, fontSize: '0.52rem', fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {s.label}
+                        </div>
+                        <div style={{ color: P.neutral, fontSize: '0.48rem', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+                            {s.sub}
+                        </div>
                     </div>
-                    <div style={{ color: P.neutral, fontSize: '0.48rem', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
-                        {s.sub}
-                    </div>
-                </div>
-            ))}
-        </div>
-        {/* CTA */}
-        <button style={{
-            width: '100%',
-            padding: '0.6rem',
-            background: P.accent,
-            border: 'none',
-            borderRadius: 30,
-            color: P.bg,
-            fontWeight: 700,
-            fontSize: '0.8rem',
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-            boxShadow: `0 8px 24px ${P.accent}44`,
-        }}>
-            Get Started
-        </button>
-    </motion.div>
-);
+                ))}
+            </div>
+
+            {/* Explanation Section */}
+            <AnimatePresence>
+                {isExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: 'auto', marginTop: '0.4rem' }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        style={{
+                            overflow: 'hidden',
+                            marginBottom: '1rem',
+                            color: P.neutral,
+                            fontSize: '0.8rem',
+                            lineHeight: 1.5,
+                            background: 'rgba(0,0,0,0.3)',
+                            borderRadius: 8,
+                            border: '1px solid rgba(198,161,91,0.05)'
+                        }}
+                    >
+                        <div style={{ padding: '0.8rem' }}>
+                            <strong style={{ color: P.text }}>Cinematic Theatre Ratio</strong><br/>
+                            Black provides foundational depth (70%), Burgundy adds a luxurious theatre curtain feel (20%), and Gold is used sparingly for elegant impact (8%).
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* CTA */}
+            <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setIsExpanded(!isExpanded)}
+                style={{
+                    width: '100%',
+                    padding: '0.6rem',
+                    background: isExpanded ? 'transparent' : P.accent,
+                    border: isExpanded ? `1px solid ${P.accent}` : 'none',
+                    borderRadius: 30,
+                    color: isExpanded ? P.accent : P.bg,
+                    fontWeight: 700,
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    boxShadow: isExpanded ? 'none' : `0 8px 24px ${P.accent}44`,
+                    transition: 'all 0.3s ease'
+                }}
+            >
+                {isExpanded ? 'Less Details' : 'Know More'}
+            </motion.button>
+        </motion.div>
+    );
+};
 
 
 const FeatureCards = () => (

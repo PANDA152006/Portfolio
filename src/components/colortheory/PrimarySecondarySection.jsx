@@ -19,9 +19,9 @@ const TriangleDiagram = ({ colors, label, delay = 0 }) => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: '-80px' });
     const positions = [
-        { top: '0%', left: '50%' },
-        { top: '78%', left: '12%' },
-        { top: '78%', left: '88%' },
+        { top: '0.17%', left: '42%' },
+        { top: '77.67%', left: '2.67%' },
+        { top: '77.67%', left: '80.33%' },
     ];
     return (
         <div ref={ref} style={{ position: 'relative', width: 240, height: 240, flexShrink: 0 }}>

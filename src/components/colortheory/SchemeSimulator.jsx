@@ -334,6 +334,8 @@ const SchemeSimulator = () => {
                             background: `radial-gradient(circle at center, ${P.surface}33 0%, transparent 70%)`,
                             padding: '4rem',
                             borderRadius: '40px',
+                            marginLeft: '-4%',
+                            width: 'fit-content'
                         }}
                     >
                         {/* Wheel Column */}

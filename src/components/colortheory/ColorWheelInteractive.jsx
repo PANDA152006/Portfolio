@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
 import { useState, useRef } from 'react';
 
 // Theme Context
@@ -168,11 +168,17 @@ const ColorWheelInteractive = () => {
     
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start center", "end center"]
+        offset: ["start center", "end end"]
     });
 
-    const titleY = useTransform(scrollYProgress, [0, 0.2], [50, 0]);
-    const titleOp = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
+    const titleY = useTransform(smoothProgress, [0, 0.2], [50, 0]);
+    const titleOp = useTransform(smoothProgress, [0, 0.2], [0, 1]);
 
     const descriptions = {
         primary: 'Primary colors are the foundation of the cinematic palette. They represent raw, irreducible elements in a scene.',
@@ -181,7 +187,8 @@ const ColorWheelInteractive = () => {
     };
 
     return (
-        <div ref={containerRef} style={{ width: '100%', minHeight: '120vh', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+        <div ref={containerRef} style={{ width: '100%', height: '300vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            <div style={{ position: 'sticky', top: '10vh', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
             
             <motion.div style={{ textAlign: 'center', marginBottom: '1rem', y: titleY, opacity: titleOp }}>
                 <h3 style={{ fontSize: '1.2rem', color: P.accent, textTransform: 'uppercase', letterSpacing: '0.2em', margin: '0 0 1rem 0' }}>The Assembly</h3>
@@ -223,8 +230,7 @@ const ColorWheelInteractive = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                position: 'sticky',
-                top: '20vh',
+                marginTop: '1rem',
             }}>
                 {/* SVG Animated Wheel */}
                 <div style={{ position: 'relative', flexShrink: 0, width: SIZE, height: SIZE }}>
@@ -249,7 +255,7 @@ const ColorWheelInteractive = () => {
                                     midAngle={midAngle}
                                     isHovered={hovered === i}
                                     isSelected={selected?.i === i}
-                                    scrollYProgress={scrollYProgress}
+                                    scrollYProgress={smoothProgress}
                                     setHovered={setHovered}
                                     setSelected={setSelected}
                                     focusedType={focusedType}
@@ -380,6 +386,7 @@ const ColorWheelInteractive = () => {
                         )}
                     </AnimatePresence>
                 </div>
+            </div>
             </div>
         </div>
     );
